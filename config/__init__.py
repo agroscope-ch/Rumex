@@ -1,0 +1,1 @@
+from .paths_config import PathsConfig
