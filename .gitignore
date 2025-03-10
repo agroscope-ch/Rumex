@@ -7,3 +7,6 @@ artifacts/
 *.pth
 artifacts/models/
 mlruns/
+keys.json
+**/*checkpoint.json
+notebooks/.ipynb_checkpoints/
