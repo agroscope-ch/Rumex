@@ -4,8 +4,8 @@ from ray import tune
 from ray.tune import CLIReporter
 from ray.tune.schedulers import ASHAScheduler
 from ray.tune.search.bayesopt import BayesOptSearch
-from scripts.train import train_model
-from config.config import load_config, save_config
+from src.train import train_model
+from utils.generic import save_config
 
 def hyperparameter_tuning(num_samples=10, max_num_epochs=10, gpus_per_trial=1):
     config = {

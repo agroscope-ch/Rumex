@@ -1,0 +1,22 @@
+dataset:
+  dataset_name: haldennord09
+  dataset_version: latest
+  extension: png
+  darwin_root: /home/naro/.darwin/datasets/digital-production
+
+dataloader:
+  batch_size: 8
+  num_workers: 4
+
+model:
+  model_name: fasterrcnn
+  backbone: resnet50
+  train_backbone: False
+  weights: COCO_V1
+  num_classes: 2
+  optimizer: adam
+    weight_decay: 0.0005
+  learning_rate: 0.005
+  epochs: 10
+  models_dir: /home/naro/projects/Rumex/artifacts/models
+ 

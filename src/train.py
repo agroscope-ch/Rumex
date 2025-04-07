@@ -1,9 +1,7 @@
 import torch
 import mlflow
 import os
-from scripts.evaluate import evaluate_map50
-from config.config import load_config
-
+from src.evaluate import evaluate_map50
 
 def train_one_epoch(model, optimizer, train_loader, device, epoch):
     """
@@ -79,7 +77,7 @@ def train_model(model, train_loader, val_loader, config, device):
     for epoch in range(config['epochs']):
         # Training
         print(f'Epoch: {epoch}')
-        train_loss = train_one_epoch(model, optimizer, train_loader, device, epoch)
+        all_losses = train_one_epoch(model, optimizer, train_loader, device, epoch)
 
         # Validation
         val_metrics = evaluate_map50(model, val_loader, device)
@@ -90,12 +88,12 @@ def train_model(model, train_loader, val_loader, config, device):
 
         mlflow.log_metrics({
             'map_50': val_metrics,
-            'Total Loss': train_loss['Total Loss'],
+            'Total Loss': all_losses['Total Loss'],
             'Learning Rate': optimizer.param_groups[0]['lr'],
-            'loss_classifier': train_loss['loss_classifier'],
-            'loss_box_reg': train_loss['loss_box_reg'],
-            'loss_objectness': train_loss['loss_objectness'],
-            'loss_rpn_box_reg': train_loss['loss_rpn_box_reg'],
+            'loss_classifier': all_losses['loss_classifier'],
+            'loss_box_reg': all_losses['loss_box_reg'],
+            'loss_objectness': all_losses['loss_objectness'],
+            'loss_rpn_box_reg': all_losses['loss_rpn_box_reg'],
         }, step=epoch)
 
         # Save best model
