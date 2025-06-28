@@ -10,3 +10,8 @@ mlruns/
 keys.json
 **/*checkpoint.json
 notebooks/.ipynb_checkpoints/
+assets/.ipynb_checkpoints/
+assets/digital-production/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+Paper1-Generalization/figures/*
